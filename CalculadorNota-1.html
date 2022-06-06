@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Nota</title>
+    
+    <style>
+
+        div {
+        background-color: #d3d3d3;
+        width: 400px;
+        height: 300px;
+        margin: 200px auto;
+        text-align: center;
+            
+        }
+
+        form{
+        text-align: center;
+        margin: 30px;
+        display: inline-block;
+        width: 300px;
+        height: 100px;
+        }
+
+        button{
+        transition-duration: 0,4s;
+        border: none;
+        color: black;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 0px 2px;
+        cursor: pointer;
+
+        }
+
+        button:hover{
+        background-color: blueviolet;
+        color: white;
+        
+
+        }
+
+    </style>
+</head>
+<body>
+    
+        <div>
+                    <form>
+                        <label for="nota1">Insira nota principal:</label>
+                        <input type="text" id="nota1" name="nota1">
+                        <br>
+                        <label for="nota1">Insira nota secundaria:</label>
+                        <input type="text" id="nota2" name="nota2">
+
+                    </form>
+
+                    <button onclick="verificaSituacao()">
+                        Calcular Nota
+                    </button>                  
+                    <p>Média:<span id="med"></span></p>
+                    <p>Situação:<span id="sit"></span></p>
+
+        </div>
+
+                <script>
+                    function verificaSituacao() {
+                        let situacao = '';
+                        let cor = '';
+                        let n1 = 0.0;
+                        let n2 = 0.0;
+                        let media = 0;
+
+                        obterNotas();
+                        calcularMedia();
+                        exibirMediaSituacao();
+
+
+                        function obterNotas() {
+                            n1 = parseFloat(document.getElementById('nota1').value);
+                            n2 = parseFloat(document.getElementById('nota2').value);
+                        }
+
+                        function calcularMedia() {
+                            media = (n1 + n2) / 2;
+                        }
+
+                        function exibirMediaSituacao() {
+                            if (media >= 6) {
+                                situacao = 'Aprovado';
+                                cor = 'blue';
+                            } else {
+                                situacao = 'Reprovado';
+                                cor = 'red';
+                            }
+                            document.getElementById('med').innerHTML = media;
+                            document.getElementById('sit').innerHTML = situacao;
+                            document.getElementById('sit').style.color = cor;
+                        }
+                    }
+                </script>
+    
+
+</body>
+</html>
